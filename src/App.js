@@ -108,7 +108,7 @@ class App extends Component {
                           </ul>
                         }
                         <label>I need help with...</label><br/>
-                        <input className="lrg-input" type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
+                        <textarea className="lrg-input" type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
                       </div>
 
                       <div className="margin-top-md">
