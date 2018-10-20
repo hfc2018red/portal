@@ -88,7 +88,6 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        {!this.state.loading && this.state.messages.length === 0 &&
           <div>
             <h1>Friends Helping Friends</h1>
               <div className="row margin-top-md">
@@ -103,6 +102,11 @@ class App extends Component {
                   <h4>What can we help you find today?</h4>
                     <div>
                       <div className="margin-top-md">
+                        {this.state.messages && this.state.messages.length > 0 &&
+                          <ul>
+                            {this.state.messages.map(m => <li>{message.body}</li>)}
+                          <ul>
+                        }
                         <label>I need help with...</label><br/>
                         <input className="lrg-input" type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
                       </div>
@@ -129,7 +133,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-      }
     </div>
 
   );
