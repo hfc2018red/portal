@@ -2,8 +2,6 @@
   padding: 20px;
 }
 
-
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -37,10 +35,17 @@ label {
   font-size: calc(30px + 2vmin);
   color: black;
   border: black;
+  padding: 10px;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.footer {
+  background-color: #C0D6DF;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 @keyframes App-logo-spin {

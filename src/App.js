@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import friends from './images/friends.png';
 
 import openSocket from 'socket.io-client';
 const  socket = openSocket('https://hfc2018red.herokuapp.com');
@@ -90,15 +91,21 @@ class App extends Component {
       <div className="container">
           <div>
             <div className="App-header">
-              <h1>Friends Helping Friends</h1>
+              <h1 className="margin-top-md">Friends Helping Friends</h1>
             </div>
               <div className="row margin-top-md">
                 <div className="col-xs-12 col-lg-4">
-                  <p>Hello, we're here to help!</p>
+
+                  <h3>Hello, we're here to help!</h3>
 
                   <p>Any questions you submit here will be answered by another Portlander who's been there and can help you find the resources you're looking for. They will reply to you within 24 hours.</p>
 
                   <p>(As always, if you're experiencing a medical or other emergency, please be safe and call 911.)</p>
+
+                  <div className="margin-top-md">
+                    <img src={friends} width="250px" alt="" className="margin-top-md mx-auto d-block" />
+                  </div>
+
                 </div>
                 <div className="col-xs-12 col-lg-8">
                   <h4>What can we help you find today?</h4>
@@ -138,6 +145,9 @@ class App extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="footer row">
+          <p>We're sponsored by the City of Portland and Technology Association of Oregon, to help our community live a quality life. We hope this tool is helpful in connecting you to people and services that you can trust. To get started, tell us what your need is.</p>
         </div>
     </div>
 
