@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import openSocket from 'socket.io-client';
+const  socket = openSocket('https://hfc2018red.herokuapp.com');
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +13,26 @@ class App extends Component {
       threadId: undefined
     }
 
+    socket.on('message', msg => {
+      console.log('got message');
+      /*
+      if (this.state.loading === true) {
+        return; 
+      }
+      */
+
+      window.fetch(`https://hfc2018red.herokuapp.com/threads/${window.location.hash.slice(1)}`)
+        .then(res => {
+          return res.json();
+        }).then(json => {
+          this.setState(Object.assign({}, this.state, {
+            loading: false,
+            threadId: json.length > 0 ? json[0].uuid : undefined,
+            messages: json.length > 0 ? json[0].messages || [] : []
+          }));
+        });
+    });
+
     if (window.location.hash) {
       this.state.loading = true;
       window.fetch(`https://hfc2018red.herokuapp.com/threads/${window.location.hash.slice(1)}`)
@@ -19,6 +41,7 @@ class App extends Component {
         }).then(json => {
           this.setState(Object.assign({}, this.state, {
             loading: false,
+            threadId: json.length > 0 ? json[0].uuid : undefined,
             messages: json.length > 0 ? json[0].messages || [] : []
           }));
         });
