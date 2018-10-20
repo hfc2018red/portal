@@ -104,8 +104,8 @@ class App extends Component {
                       <div className="margin-top-md">
                         {this.state.messages && this.state.messages.length > 0 &&
                           <ul>
-                            {this.state.messages.map(m => <li>{message.body}</li>)}
-                          <ul>
+                            {this.state.messages.map(m => <li>{m.body}</li>)}
+                          </ul>
                         }
                         <label>I need help with...</label><br/>
                         <input className="lrg-input" type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
