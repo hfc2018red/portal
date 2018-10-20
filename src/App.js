@@ -98,7 +98,7 @@ class App extends Component {
 
                   <h3>Hello, we're here to help!</h3>
 
-                  <p>Any questions you submit here will be answered by another Portlander who's been there and can help you find the resources you're looking for. They will reply to you within 24 hours.</p>
+                  <p>Any questions you submit here will be answered by another Portlander who's been there and can help you find the resources you're looking for. It may take a few minutes for them to respond - please be patient.</p>
 
                   <p>(As always, if you're experiencing a medical or other emergency, please be safe and call 911.)</p>
 
@@ -120,27 +120,17 @@ class App extends Component {
                         <label for="location">Where are you located?</label>  &nbsp; &nbsp;
                         <input type="text" id="location" />
                       </div>
-                      <div className="margin-top-md">
-                        <label for="notification">How would you like us to reply to you?</label> &nbsp; &nbsp;
-                        <select id="notification">
-                          <option value="text">By text message</option>
-                          <option value="email">By email</option>
-                        </select>
-                      </div>
-                      <div className="margin-top-md">
-                        <label for="location">What's your cell number or email address?</label>  &nbsp; &nbsp;
-                        <input type="text" id="contact-method" />
-                      </div>
+
                       <div className="margin-top-md">
                         <button onClick={this.handleSubmit.bind(this)} disabled={this.state.message.length === 0}>Send</button>
                       </div>
-                      <div>
-                      <h5 className="margin-top-md">You're looking for...</h5>
-                      {this.state.messages && this.state.messages.length > 0 &&
-                        <ul>
-                          {this.state.messages.map(m => <li>{m.body}</li>)}
-                        </ul>
-                      }
+                      <div className="message-box margin-top-md">
+                        <h5 className="margin-top-md">Conversation</h5>
+                        {this.state.messages && this.state.messages.length > 0 &&
+                          <ul>
+                            {this.state.messages.map(m => <li>{m.body}</li>)}
+                          </ul>
+                        }
                     </div>
               </div>
             </div>
