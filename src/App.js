@@ -4,6 +4,7 @@ import './App.css';
 import openSocket from 'socket.io-client';
 const  socket = openSocket('https://hfc2018red.herokuapp.com');
 
+console.log('here');
 class App extends Component {
   constructor(props) {
     super(props);
