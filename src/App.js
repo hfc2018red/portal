@@ -89,7 +89,9 @@ class App extends Component {
     return (
       <div className="container">
           <div>
-            <h1>Friends Helping Friends</h1>
+            <div className="App-header">
+              <h1>Friends Helping Friends</h1>
+            </div>
               <div className="row margin-top-md">
                 <div className="col-xs-12 col-lg-4">
                   <p>Hello, we're here to help!</p>
@@ -102,17 +104,13 @@ class App extends Component {
                   <h4>What can we help you find today?</h4>
                     <div>
                       <div className="margin-top-md">
-                        {this.state.messages && this.state.messages.length > 0 &&
-                          <ul>
-                            {this.state.messages.map(m => <li>{m.body}</li>)}
-                          </ul>
-                        }
+
                         <label>I need help with...</label><br/>
                         <textarea className="lrg-input" type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
                       </div>
 
                       <div className="margin-top-md">
-                        <label for="location">Where are you located?</label><br/>
+                        <label for="location">Where are you located?</label>  &nbsp; &nbsp;
                         <input type="text" id="location" />
                       </div>
                       <div className="margin-top-md">
@@ -123,12 +121,20 @@ class App extends Component {
                         </select>
                       </div>
                       <div className="margin-top-md">
-                        <label for="location">What's your cell number or email address?</label><br/>
+                        <label for="location">What's your cell number or email address?</label>  &nbsp; &nbsp;
                         <input type="text" id="contact-method" />
                       </div>
                       <div className="margin-top-md">
                         <button onClick={this.handleSubmit.bind(this)} disabled={this.state.message.length === 0}>Send</button>
                       </div>
+                      <div>
+                      <h5 className="margin-top-md">You're looking for...</h5>
+                      {this.state.messages && this.state.messages.length > 0 &&
+                        <ul>
+                          {this.state.messages.map(m => <li>{m.body}</li>)}
+                        </ul>
+                      }
+                    </div>
               </div>
             </div>
           </div>
