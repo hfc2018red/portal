@@ -4,10 +4,24 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       message: '',
       messages: [],
       threadId: undefined
+    }
+
+    if (window.location.hash) {
+      this.state.loading = true;
+      window.fetch(`https://hfc2018red.herokuapp.com/threads/${window.location.hash.slice(1)}`)
+        .then(res => {
+          return res.json();
+        }).then(json => {
+          this.setState(Object.assign({}, this.state, {
+            loading: false,
+            messages: json.length > 0 ? json[0].messages || [] : []
+          }));
+        });
     }
   }
 
@@ -30,6 +44,9 @@ class App extends Component {
         return;
       }
 
+      if (json.uuid) {
+        window.location.hash = '#' + json.uuid;
+      }
       this.setState(Object.assign({}, this.state, {
         messages: json.messages || [],
         message: '',
@@ -47,7 +64,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.messages.length === 0 &&
+        {!this.state.loading && this.state.messages.length === 0 &&
           <div>
             <label>I am looking for...</label>
             <input type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
@@ -55,17 +72,20 @@ class App extends Component {
           </div>
         }
         <ul>
-        {this.state.messages.map(m => {
+        {!this.state.loading && this.state.messages.map(m => {
           return (
             <li>{m.body}</li>
           )
         })}
         </ul>
-        {this.state.messages.length > 0 &&
+        {!this.state.loading && this.state.messages.length > 0 &&
           <div>
             <input type="text" value={this.state.message} onChange={this.handleChange.bind(this)} />
             <button onClick={this.handleSubmit.bind(this)} disabled={this.state.message.length === 0}>Send</button>
           </div>
+        }
+        {this.state.loading &&
+            <div>loading...</div>
         }
       </div>
     );
